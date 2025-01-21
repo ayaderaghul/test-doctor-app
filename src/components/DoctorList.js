@@ -6,7 +6,8 @@ function DoctorList() {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-
+  const [requestInfo, setRequestInfo] = useState(null);
+  
   useEffect(() => {
     // API call to fetch doctor data
     axios.get('https://test-doctor-service.onrender.com/doctors')
@@ -20,6 +21,7 @@ function DoctorList() {
           setError(`Error ${error.response.status}: ${error.response.data.message || 'Something went wrong.'}`);
         } else if (error.request) {
           setError('No response received from the server. Please try again later.');
+          setRequestInfo(error.request);
         } else {
           setError('Failed to fetch data. Please check your connection.');
         }
@@ -32,7 +34,13 @@ function DoctorList() {
       <h1>Doctor List</h1>
       {loading && <p>Loading doctors...</p>}
       {error && <p className="error-message">{error}</p>}
-      
+
+      {!loading && requestInfo && (
+        <div className="request-info">
+          <h2>Request Details</h2>
+          <pre>{JSON.stringify(requestInfo, null, 2)}</pre>
+        </div>
+        
       <ul className="doctor-list">
         {doctors.map((doctor, index) => (
           <li key={index} className="doctor-card">
