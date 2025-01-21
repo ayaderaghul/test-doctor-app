@@ -15,7 +15,8 @@ function DoctorList() {
         setLoading(false);
       })
       .catch(error => {
-        setError('Failed to fetch doctor data.');
+        // setError('Failed to fetch doctor data.');
+        setError(error);
         setLoading(false);
       });
   }, []);
