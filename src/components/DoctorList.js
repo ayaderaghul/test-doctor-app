@@ -16,7 +16,13 @@ function DoctorList() {
       })
       .catch(error => {
         // setError('Failed to fetch doctor data.');
-        setError(error);
+        if (error.response) {
+          setError(`Error ${error.response.status}: ${error.response.data.message || 'Something went wrong.'}`);
+        } else if (error.request) {
+          setError('No response received from the server. Please try again later.');
+        } else {
+          setError('Failed to fetch data. Please check your connection.');
+        }
         setLoading(false);
       });
   }, []);
