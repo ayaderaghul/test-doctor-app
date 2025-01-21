@@ -40,7 +40,8 @@ function DoctorList() {
           <h2>Request Details</h2>
           <pre>{JSON.stringify(requestInfo, null, 2)}</pre>
         </div>
-        
+        )}
+       
       <ul className="doctor-list">
         {doctors.map((doctor, index) => (
           <li key={index} className="doctor-card">
