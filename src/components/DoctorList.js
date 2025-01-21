@@ -65,7 +65,7 @@ const [errorDetails, setErrorDetails] = useState(null); // To store the full err
         {doctors.map((doctor, index) => (
           <li key={index} className="doctor-card">
             <h2>{doctor.name}</h2>
-            <p><strong>Specialization:</strong> {doctor.specialization}</p>
+            <p><strong>Specialization:</strong> {doctor.specialty}</p>
             <p><strong>Experience:</strong> {doctor.experience} years</p>
           </li>
         ))}
